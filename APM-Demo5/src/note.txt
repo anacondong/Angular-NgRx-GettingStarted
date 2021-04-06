@@ -10,3 +10,4 @@ main.ts >> app.module.ts  //bootstrap: [AppComponent] to AppComponent
 
 /* Render after load all configs (call render Angular) */
 index.html >> app.component.ts >> html,css >> app-routing.module.ts (rounting path)
+
