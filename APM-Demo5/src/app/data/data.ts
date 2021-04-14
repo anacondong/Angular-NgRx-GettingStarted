@@ -2,6 +2,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { Product } from '../products/product';
 import { Book } from '../books/book';
+import { Member } from '../members/member';
 
 export class InitData implements InMemoryDbService {
 
@@ -81,6 +82,16 @@ export class InitData implements InMemoryDbService {
                 starRating: 4.6
             }
         ];
-        return { products, books };
+
+        const members: Member[] = [
+            {
+                id: 1,
+                memberName: 'Leaf Rake',
+                memberCode: 'GDN-0011',
+                description: 'Leaf rake with 48-inch wooden handle',
+                starRating: 3.2
+            }
+        ];
+        return { products, books, members };
     }
 }

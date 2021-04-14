@@ -25,6 +25,12 @@ const appRoutes: Routes = [
         loadChildren: () =>
           import('./books/book.module').then(m => m.BookModule)
       },
+      {
+        path: 'members',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./members/member.module').then(m => m.MemberModule)
+      },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ]
   },
