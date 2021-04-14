@@ -1,42 +1,37 @@
-<div class="card">
+<div>
 
-  <div class="card-header">
-    {{pageTitle}}
+  <div>
+    <h1>{{pageTitle}} </h1>
+    <button class="alert alert-primary"
+            role="alert"
+            (click)="newMember()">
+      Add
+    </button>
   </div>
 
-  <div class="card-body"
-       *ngIf="members">
-    <div class="list-group">
-      <button class="list-group-item list-group-item-action rounded-0"
-              *ngFor="let member of members"
-              [ngClass]="{'active': member?.id === selectedMember?.id}"
-              (click)="memberSelected(member)">{{ member.memberName }}
-        <ng-container *ngIf="displayCode">
-          ({{ member.memberCode }})
-        </ng-container>
-      </button>
-    </div>
-  </div>
-
-  <div class="card-footer">
-    <div class="row">
-      <div class="form-check col-md-7">
-        <label>
-          <input class="form-check-input"
-                 type="checkbox"
-                 (change)="checkChanged()"
-                 [checked]="displayCode">
-          Display Member Code
-        </label>
-      </div>
-      <div class="col-md-4 text-right">
-        <button class="btn btn-primary"
-                (click)="newMember()">
-          Add
-        </button>
-      </div>
-    </div>
-  </div>
+  <table *ngIf="members"
+         class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">password</th>
+        <th scope="col">memberName</th>
+        <th scope="col">memberCode</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let member of members"
+        [ngClass]="{'active': member?.id === selectedMember?.id}"
+        (click)="memberSelected(member)">
+      <td>{{ member.id }}</td>
+      <td>{{ member.name }}</td>
+      <td>{{ member.email }}</td>
+      <td>{{ member.password }}</td>
+      <td>{{ member.memberName }}</td>
+      <td>{{ member.memberCode }}</td>
+    </tr>
+  </table>
 </div>
 <div *ngIf="errorMessage"
      class="alert alert-danger">

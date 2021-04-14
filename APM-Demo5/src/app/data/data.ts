@@ -86,10 +86,13 @@ export class InitData implements InMemoryDbService {
         const members: Member[] = [
             {
                 id: 1,
-                memberName: 'Leaf Rake',
-                memberCode: 'GDN-0011',
-                description: 'Leaf rake with 48-inch wooden handle',
-                starRating: 3.2
+                memberName: 'memberName',
+                memberCode: 'memberCode',
+                description: 'description',
+                starRating: 0.0,
+                name: 'name',
+                email: 'email',
+                password: 'password',
             }
         ];
         return { products, books, members };

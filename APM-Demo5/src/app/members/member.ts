@@ -5,4 +5,8 @@ export interface Member {
     memberCode: string;
     description: string;
     starRating: number;
+
+    email: string;
+    name: string;
+    password: string;
 }

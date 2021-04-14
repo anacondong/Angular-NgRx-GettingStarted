@@ -32,7 +32,10 @@ export const getCurrentMember = createSelector(
                 memberName: '',
                 memberCode: 'New',
                 description: '',
-                starRating: 0
+                starRating: 0,
+                email: '',
+                name: '',
+                password: '',
             };
         } else {
             return currentMemberId ? state.Members.find(p => p.id === currentMemberId) : null;
