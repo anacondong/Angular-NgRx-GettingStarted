@@ -29,13 +29,13 @@ export const getCurrentMember = createSelector(
         if (currentMemberId === 0) {
             return {
                 id: 0,
-                memberName: '',
-                memberCode: 'New',
-                description: '',
+                memberName: 'Init State',
+                memberCode: 'Init State',
+                description: 'Init State',
                 starRating: 0,
-                email: '',
-                name: '',
-                password: '',
+                email: 'Init State',
+                name: 'Init State',
+                password: 'Init State',
             };
         } else {
             return currentMemberId ? state.Members.find(p => p.id === currentMemberId) : null;

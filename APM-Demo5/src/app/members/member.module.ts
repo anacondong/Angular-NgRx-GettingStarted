@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { MemberShellComponent } from './member-shell/member-shell.component';
+import { MemberModuleComponent } from './member-module/member-module.component';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 
@@ -14,7 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MemberEffects } from './state/member.effects';
 
 const MemberRoutes: Routes = [
-  { path: '', component: MemberShellComponent }
+  { path: '', component: MemberModuleComponent }
 ];
 
 @NgModule({
@@ -25,7 +25,7 @@ const MemberRoutes: Routes = [
     EffectsModule.forFeature([MemberEffects])
   ],
   declarations: [
-    MemberShellComponent,
+    MemberModuleComponent,
     MemberListComponent,
     MemberEditComponent
   ]

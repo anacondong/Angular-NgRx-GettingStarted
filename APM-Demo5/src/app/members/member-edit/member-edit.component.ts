@@ -47,7 +47,16 @@ export class MemberEditComponent implements OnInit, OnChanges {
       },
       starRating: {
         range: 'Rate the member between 1 (lowest) and 5 (highest).'
-      }
+      },
+      name: {
+        required: 'Member name is required.'
+      },
+      email: {
+        required: 'Member email is required.'
+      },
+      password: {
+        required: 'Member password is required.'
+      },
     };
 
     // Define an instance of the validator for use with this form,
@@ -61,7 +70,10 @@ export class MemberEditComponent implements OnInit, OnChanges {
       memberName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       memberCode: ['', Validators.required],
       starRating: ['', NumberValidators.range(1, 5)],
-      description: ''
+      description: '',
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
 
     // Watch for value changes for validation
@@ -101,7 +113,10 @@ export class MemberEditComponent implements OnInit, OnChanges {
         memberName: member.memberName,
         memberCode: member.memberCode,
         starRating: member.starRating,
-        description: member.description
+        description: member.description,
+        name: member.name,
+        email: member.email,
+        password: member.password
       });
     }
   }

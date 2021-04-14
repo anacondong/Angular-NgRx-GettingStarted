@@ -29,6 +29,63 @@
 
         <div class="form-group row">
           <label class="col-md-3 col-form-label"
+                 for="memberNameId">Name</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.name}"
+                   class="form-control"
+                   id="memberNameId"
+                   type="text"
+                   placeholder="Name (required)"
+                   formControlName="name"
+                   (blur)="blur()" />
+            <span class="invalid-feedback"
+                  *ngIf="displayMessage.name">
+              {{displayMessage.name}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label"
+                 for="memberEmailId">Email</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.email}"
+                   class="form-control"
+                   id="memberEmailId"
+                   type="text"
+                   placeholder="Email (required)"
+                   formControlName="email"
+                   (blur)="blur()" />
+            <span class="invalid-feedback"
+                  *ngIf="displayMessage.email">
+              {{displayMessage.email}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label"
+                 for="memberPasswordId">Password</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.password}"
+                   class="form-control"
+                   id="memberPasswordId"
+                   type="text"
+                   placeholder="password (required)"
+                   formControlName="password"
+                   (blur)="blur()" />
+            <span class="invalid-feedback"
+                  *ngIf="displayMessage.password">
+              {{displayMessage.password}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label"
                  for="memberCodeId">Member Code</label>
 
           <div class="col-md-9">

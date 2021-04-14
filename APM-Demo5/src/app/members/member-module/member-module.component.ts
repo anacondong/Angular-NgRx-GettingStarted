@@ -10,9 +10,9 @@ import { State, getShowMemberCode, getCurrentMember, getMembers, getError } from
 import { MemberPageActions } from '../state/actions';
 
 @Component({
-  templateUrl: './member-shell.component.html'
+  templateUrl: './member-module.component.html'
 })
-export class MemberShellComponent implements OnInit {
+export class MemberModuleComponent implements OnInit {
   displayCode$: Observable<boolean>;
   selectedMember$: Observable<Member>;
   members$: Observable<Member[]>;
