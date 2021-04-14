@@ -1,0 +1,19 @@
+<div class='row'>
+  <div class='col-md-4'>
+    <pm-book-list [displayCode]="displayCode$ | async"
+                  [books]="books$ | async"
+                  [selectedBook]="selectedBook$ | async"
+                  [errorMessage]="errorMessage$ | async"
+                  (displayCodeChanged)="checkChanged()"
+                  (initializeNewBook)="newBook()"
+                  (bookWasSelected)="bookSelected($any($event))"></pm-book-list>
+  </div>
+  <div class='col-md-8'>
+    <pm-book-edit [selectedBook]="selectedBook$ | async"
+                  [errorMessage]="errorMessage$ | async"
+                  (clearCurrent)="clearBook()"
+                  (update)="updateBook($any($event))"
+                  (delete)="deleteBook($any($event))"
+                  (create)="saveBook($any($event))"></pm-book-edit>
+  </div>
+</div>
