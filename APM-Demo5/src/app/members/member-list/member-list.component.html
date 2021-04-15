@@ -4,7 +4,9 @@
     <h1>{{pageTitle}} </h1>
     <button class="alert alert-primary"
             role="alert"
-            (click)="newMember()">
+            (click)="newMember()"
+            data-toggle="modal"
+            data-target="#exampleModalCenter">
       Add
     </button>
   </div>
@@ -23,7 +25,9 @@
     </thead>
     <tr *ngFor="let member of members"
         [ngClass]="{'active': member?.id === selectedMember?.id}"
-        (click)="memberSelected(member)">
+        (click)="memberSelected(member)"
+        data-toggle="modal"
+        data-target="#exampleModalCenter">
       <td>{{ member.id }}</td>
       <td>{{ member.name }}</td>
       <td>{{ member.email }}</td>
@@ -33,7 +37,9 @@
     </tr>
   </table>
 </div>
-<div *ngIf="errorMessage"
-     class="alert alert-danger">
-  Error: {{ errorMessage }}
-</div>
+<!-- 
+  <div *ngIf="errorMessage"
+      class="alert alert-danger">
+    {{ errorMessage }}
+  </div> 
+-->

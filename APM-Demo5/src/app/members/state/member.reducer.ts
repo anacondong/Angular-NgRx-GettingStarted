@@ -30,7 +30,8 @@ export const MemberReducer = createReducer<MemberState>(
   on(MemberPageActions.setCurrentMember, (state, action): MemberState => {
     return {
       ...state,
-      currentMemberId: action.currentMemberId
+      currentMemberId: action.currentMemberId,
+      error: ''
     };
   }),
   on(MemberPageActions.clearCurrentMember, (state): MemberState => {
@@ -42,7 +43,8 @@ export const MemberReducer = createReducer<MemberState>(
   on(MemberPageActions.initializeCurrentMember, (state): MemberState => {
     return {
       ...state,
-      currentMemberId: 0
+      currentMemberId: 0,
+      error: ''
     };
   }),
   on(MemberApiActions.loadMembersSuccess, (state, action): MemberState => {
@@ -66,7 +68,7 @@ export const MemberReducer = createReducer<MemberState>(
       ...state,
       Members: updatedMembers,
       currentMemberId: action.member.id,
-      error: ''
+      error: 'updateMemberSuccess'
     };
   }),
   on(MemberApiActions.updateMemberFailure, (state, action): MemberState => {
@@ -81,7 +83,7 @@ export const MemberReducer = createReducer<MemberState>(
       ...state,
       Members: [...state.Members, action.member],
       currentMemberId: action.member.id,
-      error: ''
+      error: 'createMemberSuccess'
     };
   }),
   on(MemberApiActions.createMemberFailure, (state, action): MemberState => {

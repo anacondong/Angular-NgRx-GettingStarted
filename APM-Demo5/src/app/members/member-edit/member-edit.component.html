@@ -1,178 +1,201 @@
-<div class="card"
-     *ngIf="selectedMember">
-  <div class="card-header">
-    {{pageTitle}}
+<div *ngIf="selectedMember">
+
+  <!-- Modal -->
+  <div class="modal fade"
+       id="exampleModalCenter"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="exampleModalCenterTitle"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"
+         role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"
+              id="exampleModalLongTitle">{{pageTitle}}</h5>
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+
+        <form novalidate
+              (ngSubmit)="saveMember()"
+              [formGroup]="memberForm">
+          <div class="modal-body">
+            <div>
+
+              <fieldset>
+
+                <div class="form-group row"
+                     *ngIf="errorMessage"
+                     class="alert alert-primary">
+                  Message: {{ errorMessage }}
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="memberNameId">Member Name</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.memberName }"
+                           class="form-control"
+                           id="memberNameId"
+                           type="text"
+                           placeholder="Name (required)"
+                           formControlName="memberName"
+                           (blur)="blur()" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.memberName">
+                      {{displayMessage.memberName}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="memberNameId">Name</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.name}"
+                           class="form-control"
+                           id="memberNameId"
+                           type="text"
+                           placeholder="Name (required)"
+                           formControlName="name"
+                           (blur)="blur()" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.name">
+                      {{displayMessage.name}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="memberEmailId">Email</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.email}"
+                           class="form-control"
+                           id="memberEmailId"
+                           type="text"
+                           placeholder="Email (required)"
+                           formControlName="email"
+                           (blur)="blur()" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.email">
+                      {{displayMessage.email}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="memberPasswordId">Password</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.password}"
+                           class="form-control"
+                           id="memberPasswordId"
+                           type="text"
+                           placeholder="password (required)"
+                           formControlName="password"
+                           (blur)="blur()" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.password">
+                      {{displayMessage.password}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="memberCodeId">Member Code</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.memberCode}"
+                           class="form-control"
+                           id="memberCodeId"
+                           type="text"
+                           placeholder="Code (required)"
+                           formControlName="memberCode"
+                           (blur)="blur()" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.memberCode">
+                      {{displayMessage.memberCode}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="starRatingId">Star Rating (1-5)</label>
+
+                  <div class="col-md-9">
+                    <input [ngClass]="{'is-invalid': displayMessage.starRating}"
+                           class="form-control"
+                           id="starRatingId"
+                           type="text"
+                           placeholder="Rating"
+                           formControlName="starRating" />
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.starRating">
+                      {{displayMessage.starRating}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label"
+                         for="descriptionId">Description</label>
+
+                  <div class="col-md-9">
+                    <textarea [ngClass]="{'is-invalid': displayMessage.description}"
+                              class="form-control"
+                              id="descriptionId"
+                              placeholder="Description"
+                              rows=3
+                              formControlName="description">
+                </textarea>
+                    <span class="invalid-feedback"
+                          *ngIf="displayMessage.description">
+                      {{ displayMessage.description}}
+                    </span>
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"
+                    type="submit"
+                    style="width:80px;margin-right:10px"
+                    [disabled]="!memberForm.valid || !memberForm.dirty">
+              Save
+            </button>
+            <button class="btn btn-light"
+                    type="button"
+                    style="width:80px;margin-right:10px"
+                    (click)="cancelEdit()">
+              Cancel
+            </button>
+            <button class="btn btn-light"
+                    type="button"
+                    style="width:80px"
+                    (click)="deleteMember()"
+                    data-dismiss="modal"
+                    aria-label="Close">
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <form novalidate
-          (ngSubmit)="saveMember()"
-          [formGroup]="memberForm">
-      <fieldset>
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="memberNameId">Member Name</label>
 
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.memberName }"
-                   class="form-control"
-                   id="memberNameId"
-                   type="text"
-                   placeholder="Name (required)"
-                   formControlName="memberName"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.memberName">
-              {{displayMessage.memberName}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="memberNameId">Name</label>
-
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.name}"
-                   class="form-control"
-                   id="memberNameId"
-                   type="text"
-                   placeholder="Name (required)"
-                   formControlName="name"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.name">
-              {{displayMessage.name}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="memberEmailId">Email</label>
-
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.email}"
-                   class="form-control"
-                   id="memberEmailId"
-                   type="text"
-                   placeholder="Email (required)"
-                   formControlName="email"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.email">
-              {{displayMessage.email}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="memberPasswordId">Password</label>
-
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.password}"
-                   class="form-control"
-                   id="memberPasswordId"
-                   type="text"
-                   placeholder="password (required)"
-                   formControlName="password"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.password">
-              {{displayMessage.password}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="memberCodeId">Member Code</label>
-
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.memberCode}"
-                   class="form-control"
-                   id="memberCodeId"
-                   type="text"
-                   placeholder="Code (required)"
-                   formControlName="memberCode"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.memberCode">
-              {{displayMessage.memberCode}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="starRatingId">Star Rating (1-5)</label>
-
-          <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.starRating}"
-                   class="form-control"
-                   id="starRatingId"
-                   type="text"
-                   placeholder="Rating"
-                   formControlName="starRating" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.starRating">
-              {{displayMessage.starRating}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="descriptionId">Description</label>
-
-          <div class="col-md-9">
-            <textarea [ngClass]="{'is-invalid': displayMessage.description}"
-                      class="form-control"
-                      id="descriptionId"
-                      placeholder="Description"
-                      rows=3
-                      formControlName="description">
-            </textarea>
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.description">
-              {{ displayMessage.description}}
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-md-10 col-md-offset-2">
-            <span>
-              <button class="btn btn-primary"
-                      type="submit"
-                      style="width:80px;margin-right:10px"
-                      [disabled]="!memberForm.valid || !memberForm.dirty">
-                Save
-              </button>
-            </span>
-            <span>
-              <button class="btn btn-light"
-                      type="button"
-                      style="width:80px;margin-right:10px"
-                      (click)="cancelEdit()">
-                Cancel
-              </button>
-            </span>
-            <span>
-              <button class="btn btn-light"
-                      type="button"
-                      style="width:80px"
-                      (click)="deleteMember()">
-                Delete
-              </button>
-            </span>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</div>
-<div *ngIf="errorMessage"
-     class="alert alert-danger">
-  Error: {{ errorMessage }}
 </div>

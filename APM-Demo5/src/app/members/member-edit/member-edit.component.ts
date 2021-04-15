@@ -151,6 +151,7 @@ export class MemberEditComponent implements OnInit, OnChanges {
         } else {
           this.update.emit(member);
         }
+
       }
     }
   }

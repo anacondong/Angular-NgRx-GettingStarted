@@ -32,7 +32,7 @@ export const getCurrentMember = createSelector(
                 memberName: 'Init State',
                 memberCode: 'Init State',
                 description: 'Init State',
-                starRating: 0,
+                starRating: 1,
                 email: 'Init State',
                 name: 'Init State',
                 password: 'Init State',
