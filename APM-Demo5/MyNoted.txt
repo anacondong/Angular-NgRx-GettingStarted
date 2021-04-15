@@ -1,0 +1,79 @@
+Ref: https://github.com/anacondong/Angular-NgRx-GettingStarted
+
+-angular.json
+"index": "src/index.html", >> app root <pm-root></pm-root>
+"main": "src/main.ts", >> main ts
+-app.component
+@Component({  >> define component
+  selector: 'pm-root', >> link to tag pm-root
+  templateUrl: './app.component.html', >> link to html
+  styleUrls: ['./app.component.css'] >> link to css
+})
+-app.component.html >> tag <router-outlet>
+-app-routing.module.ts >> appRouters
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes) >> import appRouters
+  ],
+  exports: [RouterModule]
+})
+-auth-guard.service.ts >> 
+@Injectable({
+  providedIn: 'root',
+})
+-auth.service.ts >> login, logout
+-login.component.ts >> component detail in file
+
+----------------------------------------------
+Member Module >> **routing** to **member module**  >> https://stackoverflow.com/questions/40073941/whats-the-difference-between-an-angular-component-and-module
+-app-routing.module.ts >> 
+ {
+        path: 'members',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./members/member.module').then(m => m.MemberModule)
+      }
+*members/
+-membermodule.ts >> **module** to **component**
+-member.service.ts >> all function of member >> list,create,update,delete >> call API to change state
+-member.ts >> properties of member
+*member/state/
+-index.ts >> get access to member state >> create Selector State by using createFeatureSelector, createSelector
+-member.effects.ts >> effects tigger when action has called to update state >> Effects are an RxJS powered side effect model for Store. Effects use streams to provide new sources of actions to reduce state based on external interactions such as network requests, web socket messages and time-based events.
+-member.reducer.ts >> State for this feature (Member) >> member Page Action, API action
+*member/state/actions/
+-index.ts  >> export { MemberPageActions, MemberApiActions };
+-member-api.action.ts >> createAction >> API action, update state
+-member-page.action.ts >> createAction >> Page action, update state
+**/members/member-module/
+-member-module.component.ts >> Component of member >> controll injected dispatch to Page Action
+-member-module.component.html >> tag pm-member-list,pm-member-edit
+<pm-member-list 
+[displayCode]="displayCode$ | async" >> ***props with async from state
+[members]="members$ | async"
+[selectedMember]="selectedMember$ | async"
+[errorMessage]="errorMessage$ | async"
+
+(displayCodeChanged)="checkChanged()" >> ** props with function
+	- @Output() displayCodeChanged = new EventEmitter<void>(); >> member-list.component.ts
+	-checkChanged(): void {
+    		this.store.dispatch(MemberPageActions.toggleMemberCode());
+  	}
+(initializeNewMember)="newMember()" 
+(memberWasSelected)="memberSelected($any($event))"> >>   
+</pm-member-list>
+*members/member-list/
+-member-list.component.ts >> selector,templateUrl,styleUrls,changeDetection,@Input (datatype),@Output(EvenEmitter), Function
+-member-list.component.html >> *ngFor,*ngIf, {{ param }}
+-member-list.component.css >> styesheet
+*members/member-edit/
+-member-edit.component.ts >> Validate, OnChanges, FormBuilder
+	-selector,templateUrl,@Input (datatype),@Output(EvenEmitter), Function
+-member-edit.component.html >> *ngFor,*ngIf, {{ param }}
+<form novalidate
+(ngSubmit)="saveMember()"
+[formGroup]="memberForm">
+
+
+
+

@@ -19,8 +19,9 @@ const initialState: MemberState = {
   error: ''
 };
 
-export const MemberReducer = createReducer<MemberState>(
+export const MemberReducer = createReducer<MemberState>( // create Member Reducer
   initialState,
+  // member Page Action
   on(MemberPageActions.toggleMemberCode, (state): MemberState => {
     return {
       ...state,
@@ -47,6 +48,8 @@ export const MemberReducer = createReducer<MemberState>(
       error: ''
     };
   }),
+
+  // API action
   on(MemberApiActions.loadMembersSuccess, (state, action): MemberState => {
     return {
       ...state,

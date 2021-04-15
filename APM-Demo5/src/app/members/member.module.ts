@@ -13,19 +13,21 @@ import { MemberReducer } from './state/member.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { MemberEffects } from './state/member.effects';
 
+
+
 const MemberRoutes: Routes = [
-  { path: '', component: MemberModuleComponent }
+  { path: '', component: MemberModuleComponent } // call to member module component
 ];
 
-@NgModule({
+@NgModule({  // define this to be Module to be contain component
   imports: [
     SharedModule,
-    RouterModule.forChild(MemberRoutes),
-    StoreModule.forFeature('Members', MemberReducer),
-    EffectsModule.forFeature([MemberEffects])
+    RouterModule.forChild(MemberRoutes), // router module
+    StoreModule.forFeature('Members', MemberReducer), // Store Module
+    EffectsModule.forFeature([MemberEffects]) // support when even has been activate
   ],
-  declarations: [
-    MemberModuleComponent,
+  declarations: [  //The set of components, directives, and pipes (declarables) that belong to this module.
+    MemberModuleComponent, // contain component
     MemberListComponent,
     MemberEditComponent
   ]

@@ -8,10 +8,11 @@ import { MemberService } from '../member.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { MemberPageActions, MemberApiActions } from './actions';
 
+//Decorator that marks a class as available to be provided and injected as a dependency.
 @Injectable()
 export class MemberEffects {
 
-  constructor(private actions$: Actions, private memberService: MemberService) { }
+  constructor(private actions$: Actions, private memberService: MemberService) { }  // action, member service
 
   loadMembers$ = createEffect(() => {
     return this.actions$

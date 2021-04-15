@@ -13,7 +13,8 @@ import { MemberPageActions } from '../state/actions';
   templateUrl: './member-module.component.html'
 })
 export class MemberModuleComponent implements OnInit {
-  displayCode$: Observable<boolean>;
+  // defind properties for inject state
+  displayCode$: Observable<boolean>; 
   selectedMember$: Observable<Member>;
   members$: Observable<Member[]>;
   errorMessage$: Observable<string>;

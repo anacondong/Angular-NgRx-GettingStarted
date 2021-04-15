@@ -16,35 +16,35 @@ import { UserPageActions } from './state/actions';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {  // OnInit state
   pageTitle = 'Log In';
 
   maskUserName$: Observable<boolean>;
 
-  constructor(private store: Store<State>, private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<State>, private authService: AuthService, private router: Router) { } // use store, auth service, router
 
-  ngOnInit(): void {
+  ngOnInit(): void { // init state
     this.maskUserName$ = this.store.select(getMaskUserName);
   }
 
-  cancel(): void {
+  cancel(): void { // when cancel
     this.router.navigate(['welcome']);
   }
 
-  checkChanged(): void {
+  checkChanged(): void { // when Action
     this.store.dispatch(UserPageActions.maskUserName());
   }
 
-  login(loginForm: NgForm): void {
+  login(loginForm: NgForm): void { // function link NgForm login >>  login.component.html >> (ngSubmit)="login(loginForm)"
     if (loginForm && loginForm.valid) {
       const userName = loginForm.form.value.userName;
       const password = loginForm.form.value.password;
       this.authService.login(userName, password);
 
       if (this.authService.redirectUrl) {
-        this.router.navigateByUrl(this.authService.redirectUrl);
+        this.router.navigateByUrl(this.authService.redirectUrl); // navigate to auth service
       } else {
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products']); // sucess to products page
       }
     }
   }
